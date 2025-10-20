@@ -1,0 +1,23 @@
+
+.CHSHGame h1 {
+  background-color: #282c34;
+  color: white;
+  padding: 1rem;
+  margin-top: 0;
+}
+
+.main-layout-3-col {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: stretch;
+}
+
+.panel {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  min-height: 100%;
+}

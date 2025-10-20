@@ -1,0 +1,36 @@
+
+.Explanation {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    text-align: left;
+}
+
+.highlight-box {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.highlight-box p {
+    margin: 5px 0;
+}
+
+.Explanation h4 {
+    margin-top: 0;
+}
+
+.Explanation p, .Explanation ul {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+.Explanation ul {
+    padding-left: 20px;
+}
+
+.Explanation strong {
+    color: #000;
+}
