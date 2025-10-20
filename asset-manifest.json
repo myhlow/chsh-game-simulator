@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/chsh-game-simulator/static/css/main.03a6bd53.css",
+    "main.js": "/chsh-game-simulator/static/js/main.d4ee807a.js",
+    "static/js/453.c88f8a38.chunk.js": "/chsh-game-simulator/static/js/453.c88f8a38.chunk.js",
+    "index.html": "/chsh-game-simulator/index.html",
+    "main.03a6bd53.css.map": "/chsh-game-simulator/static/css/main.03a6bd53.css.map",
+    "main.d4ee807a.js.map": "/chsh-game-simulator/static/js/main.d4ee807a.js.map",
+    "453.c88f8a38.chunk.js.map": "/chsh-game-simulator/static/js/453.c88f8a38.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.03a6bd53.css",
+    "static/js/main.d4ee807a.js"
+  ]
+}
