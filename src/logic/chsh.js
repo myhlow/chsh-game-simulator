@@ -20,10 +20,10 @@ const getQuantumOutputs = (x, y, strategy) => {
   const aliceAngle = toRad(strategy.angles.alice[x]);
   const bobAngle = toRad(strategy.angles.bob[y]);
 
-  // For orthogonally correlated states (Ψ+ and Ψ-), Bob's qubit is rotated 90° from Alice's
-  // So we need to add 90° to the delta calculation
+  // For states whose Bob angles are pre-rotated +90° (Φ-, Ψ+, Ψ-), add a
+  // compensating 90° to δ so the effective delta matches the |Φ+⟩ reference.
   let delta = aliceAngle - bobAngle;
-  if (strategy.name === '|Ψ+⟩' || strategy.name === '|Ψ-⟩') {
+  if (strategy.orthogonalCorrection) {
     delta = delta + toRad(90);
   }
 

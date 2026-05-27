@@ -23,39 +23,38 @@ const CHSHGame = () => {
   const displayedRound = currentHistoryIndex >= 0 ? roundHistory[currentHistoryIndex] : null;
 
   const handleRun = useCallback((numRounds) => {
-    let currentWins = scores.wins;
-    let currentRounds = scores.roundsPlayed;
+    // Compute results entirely before touching state, so rapid successive
+    // calls can't read stale scores from the closure.
     const newRounds = [];
+    let newWins = 0;
 
     for (let i = 0; i < numRounds; i++) {
       const result = runCHSHRound(strategyType, bellState, xInput, yInput);
-      if (result.win) {
-        currentWins++;
-      }
-      currentRounds++;
+      if (result.win) newWins++;
       newRounds.push(result);
     }
 
-    setScores({
-      roundsPlayed: currentRounds,
-      wins: currentWins,
-      losses: currentRounds - currentWins,
-      winPercentage: (currentWins / currentRounds) * 100,
+    // Functional update — reads latest state regardless of when this runs.
+    setScores(prev => {
+      const totalWins = prev.wins + newWins;
+      const totalRounds = prev.roundsPlayed + numRounds;
+      return {
+        roundsPlayed: totalRounds,
+        wins: totalWins,
+        losses: totalRounds - totalWins,
+        winPercentage: (totalWins / totalRounds) * 100,
+      };
     });
 
-    // Keep only last 100 rounds
-    setRoundHistory(prev => {
-      const updated = [...prev, ...newRounds];
-      return updated.slice(-100);
-    });
+    // Keep only last 100 rounds.
+    setRoundHistory(prev => [...prev, ...newRounds].slice(-100));
 
-    // Set current index to the last round
-    setCurrentHistoryIndex(prev => {
-      const newLength = Math.min(roundHistory.length + newRounds.length, 100);
-      return newLength - 1;
-    });
+    // Point to the last entry in the post-update history.
+    // roundHistory.length here is the pre-update length (closure), which is
+    // exactly what we need to calculate the new length after slicing.
+    setCurrentHistoryIndex(Math.min(roundHistory.length + newRounds.length, 100) - 1);
 
-  }, [strategyType, bellState, xInput, yInput, scores, roundHistory.length]);
+  }, [strategyType, bellState, xInput, yInput, roundHistory.length]);
 
   const handlePrevious = useCallback(() => {
     setCurrentHistoryIndex(prev => Math.max(0, prev - 1));

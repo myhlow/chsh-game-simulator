@@ -10,25 +10,18 @@ export const BASIS_COLORS = {
 };
 
 // Defines the optimal measurement strategy for each Bell state to maximally violate the CHSH inequality.
+//
+// Bob's angles are pre-rotated +90° for all states except |Φ+⟩, which uses the standard
+// textbook values. The `orthogonalCorrection` flag tells chsh.js to add an additional
+// 90° to the effective delta when computing P(same) = cos²(δ). Together the two 90°
+// shifts cancel for the Φ-/Ψ states and yield the same optimal deltas as |Φ+⟩.
+// |Φ+⟩ is the reference: no rotation in Bob's angles, no correction flag.
 export const STRATEGIES = {
-  [BELL_STATES['Ψ-']]: {
-    name: '|Ψ-⟩',
-    correlation: 'Opposite',
-    // Orthogonally correlated state
-    // Bob's angles: y=0 at 112.5°, y=1 at 67.5°
-    angles: {
-      alice: [0, 45], // [x=0, x=1]
-      bob: [112.5, 67.5], // [y=0, y=1] - rotated +90° from [22.5, -22.5]
-    },
-    colors: {
-      alice: [BASIS_COLORS.alice_x0, BASIS_COLORS.alice_x1],
-      bob: [BASIS_COLORS.bob_y0, BASIS_COLORS.bob_y1],
-    },
-  },
   [BELL_STATES['Φ+']]: {
     name: '|Φ+⟩',
     correlation: 'Same',
-    // Optimal CHSH angles (standard textbook values)
+    orthogonalCorrection: false,
+    // Standard textbook CHSH angles — no correction needed.
     angles: {
       alice: [0, 45],
       bob: [22.5, -22.5], // y=0: 22.5°, y=1: -22.5°
@@ -41,11 +34,12 @@ export const STRATEGIES = {
   [BELL_STATES['Φ-']]: {
     name: '|Φ-⟩',
     correlation: 'Opposite',
-    // Anti-correlated state
-    // Rotate Bob's angles by 90° to convert opposite→same correlation
+    orthogonalCorrection: true,
+    // Bob's angles rotated +90° from the standard values. chsh.js adds another
+    // 90° via orthogonalCorrection, giving effective deltas identical to |Φ+⟩.
     angles: {
       alice: [0, 45],
-      bob: [112.5, 67.5], // rotated +90° from [22.5, -22.5]
+      bob: [112.5, 67.5],
     },
     colors: {
       alice: [BASIS_COLORS.alice_x0, BASIS_COLORS.alice_x1],
@@ -55,11 +49,25 @@ export const STRATEGIES = {
   [BELL_STATES['Ψ+']]: {
     name: '|Ψ+⟩',
     correlation: 'Same',
-    // Orthogonally correlated state
-    // Bob's angles: y=0 at 112.5°, y=1 at 67.5°
+    orthogonalCorrection: true,
+    // Orthogonally correlated state — Bob's angles rotated +90°.
     angles: {
       alice: [0, 45],
-      bob: [112.5, 67.5], // [y=0, y=1] - rotated +90° from [22.5, -22.5]
+      bob: [112.5, 67.5],
+    },
+    colors: {
+      alice: [BASIS_COLORS.alice_x0, BASIS_COLORS.alice_x1],
+      bob: [BASIS_COLORS.bob_y0, BASIS_COLORS.bob_y1],
+    },
+  },
+  [BELL_STATES['Ψ-']]: {
+    name: '|Ψ-⟩',
+    correlation: 'Opposite',
+    orthogonalCorrection: true,
+    // Orthogonally correlated state — Bob's angles rotated +90°.
+    angles: {
+      alice: [0, 45],
+      bob: [112.5, 67.5],
     },
     colors: {
       alice: [BASIS_COLORS.alice_x0, BASIS_COLORS.alice_x1],
