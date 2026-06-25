@@ -92,6 +92,22 @@ const Explanation = ({ strategyType, strategy }) => {
     <div className="Explanation">
       <h3>How It Works</h3>
       {strategyType === CLASSICAL_STRATEGY ? classicalText : quantumText}
+
+      {/* WordPress Link Card */}
+      <div className="wordpress-card">
+        <h4>Deep Dive on Quantum Entanglement</h4>
+        <p>
+          For a full, detailed breakdown of the quantum physics, math, and concepts behind this simulation, read our companion article.
+        </p>
+        <a 
+          href="https://malcolmlow.com/2025/10/20/exploring-quantum-entanglement-chsh-game-simulator" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="wordpress-button"
+        >
+          Read on WordPress →
+        </a>
+      </div>
     </div>
   );
 };

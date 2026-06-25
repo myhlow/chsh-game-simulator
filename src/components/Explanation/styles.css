@@ -34,3 +34,49 @@
 .Explanation strong {
     color: #000;
 }
+
+/* WordPress Link Card Styles */
+.wordpress-card {
+    margin-top: 2rem;
+    padding: 1.2rem;
+    border: 1px dashed #0073aa;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    text-align: center;
+}
+
+.wordpress-card h4 {
+    margin-top: 0;
+    color: #0073aa;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.wordpress-card p {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.wordpress-button {
+    display: inline-block;
+    background-color: #0073aa;
+    color: #fff !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.wordpress-button:hover {
+    background-color: #005177;
+    transform: translateY(-1px);
+}
+
+.wordpress-button:active {
+    transform: translateY(1px);
+}
+

@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# CHSH Game Simulator
+
+An interactive simulator for exploring the CHSH game and the difference between classical and quantum strategies.
+
+Read the companion article: [Exploring Quantum Entanglement: CHSH Game Simulator](https://malcolmlow.com/2025/10/20/exploring-quantum-entanglement-chsh-game-simulator)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
